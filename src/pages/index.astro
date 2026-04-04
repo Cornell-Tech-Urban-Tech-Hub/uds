@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ProjectGrid from '../components/ProjectGrid.astro';
+import { getCollection } from 'astro:content';
+
+const projects = (await getCollection('projects'))
+  .filter((p) => !p.id.startsWith('_'))
+  .sort((a, b) => {
+    if (a.data.order !== undefined && b.data.order !== undefined)
+      return a.data.order - b.data.order;
+    return a.data.title.localeCompare(b.data.title);
+  });
+---
+
+<BaseLayout title="Gowanus | UDS26 Cornell Tech">
+  <Header />
+  <main>
+    <section class="hero">
+      <h1>Gowanus</h1>
+      <p class="subtitle">UDS26 Urban Systems &middot; Cornell Tech &middot; Spring 2026</p>
+      <p class="description">
+        Student-led explorations of urban systems in and around the Gowanus neighborhood.
+        Each card links to a group's project website.
+      </p>
+    </section>
+    <ProjectGrid projects={projects} />
+  </main>
+  <Footer />
+</BaseLayout>
