@@ -15,7 +15,7 @@ Create a new file at `src/content/projects/your-group-name.md` with this format:
 title: "Your Project Title"
 members: ["Name 1", "Name 2", "Name 3"]
 image: "/images/projects/your-group-name.jpg"
-url: "https://your-username.github.io/your-project-repo"
+url: "https://cornell-tech-urban-tech-hub.github.io/your-project-repo"
 description: "A one-line description of your project"
 ---
 ```
@@ -35,7 +35,7 @@ Drop your image into `public/images/projects/`. The filename should match what y
 
 ### 3. Open a pull request
 
-Commit your two files (the `.md` and the image) and open a PR to `main`. The site auto-deploys when your PR is merged.
+Create a branch, commit your two files (the `.md` and the image), push, and open a PR to `main`. The site auto-deploys when your PR is merged.
 
 ## Local Development
 
@@ -44,7 +44,7 @@ npm install
 npm run dev
 ```
 
-The site will be available at `http://localhost:4321/uds26_gowanus/`.
+The site will be available at `http://localhost:4321/uds/`.
 
 ## Tech Stack
 
