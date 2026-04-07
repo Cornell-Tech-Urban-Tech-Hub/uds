@@ -1,22 +1,45 @@
 ---
 import ProjectCard from './ProjectCard.astro';
 import type { CollectionEntry } from 'astro:content';
+import gowanusImage from '../assets/gowanus.jpg';
 
 interface Props {
   projects: CollectionEntry<'projects'>[];
 }
 
 const { projects } = Astro.props;
+
+const count = projects.length;
+const angleStep = (2 * Math.PI) / Math.max(count, 1);
+const radius = 44;
+
+const positions = projects.map((_, i) => {
+  const angle = angleStep * i - Math.PI / 2;
+  return {
+    x: 50 + radius * Math.cos(angle),
+    y: 50 + radius * Math.sin(angle),
+  };
+});
 ---
 
-<section class="project-grid">
-  {projects.map((project) => (
-    <ProjectCard
-      title={project.data.title}
-      members={project.data.members}
-      image={project.data.image}
-      url={project.data.url}
-      description={project.data.description}
-    />
+<div class="radial-container">
+  <div class="radial-center">
+    <img src={gowanusImage.src} alt="Gowanus neighborhood" class="radial-image" />
+    <a href="https://gowanusimprovementdistrict.org/" class="radial-caption" target="_blank" rel="noopener noreferrer">Proposed Gowanus BID</a>
+  </div>
+
+  {projects.map((project, i) => (
+    <div
+      class="radial-item"
+      style={`left: ${positions[i].x}%; top: ${positions[i].y}%;`}
+    >
+      <ProjectCard
+        title={project.data.title}
+        members={project.data.members}
+        image={project.data.image}
+        url={project.data.url}
+        description={project.data.description}
+      />
+    </div>
   ))}
-</section>
+</div>

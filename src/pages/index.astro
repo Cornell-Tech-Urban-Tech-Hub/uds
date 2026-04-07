@@ -14,18 +14,49 @@ const projects = (await getCollection('projects'))
   });
 ---
 
-<BaseLayout title="Gowanus | UDS26 Cornell Tech">
+<BaseLayout title="Street Knowledge — Cornell Tech">
   <Header />
   <main>
-    <section class="hero">
-      <h1>Gowanus</h1>
-      <p class="subtitle">UDS26 Urban Systems &middot; Cornell Tech &middot; Spring 2026</p>
-      <p class="description">
-        Student-led explorations of urban systems in and around the Gowanus neighborhood.
-        Each card links to a group's project website.
-      </p>
-    </section>
-    <ProjectGrid projects={projects} />
+    <div class="page-layout">
+      <div class="page-left">
+        <section class="hero">
+          <h1>Street Knowledge</h1>
+          <p class="subtitle">Urban systems design in NYC's Gowanus district</p>
+        </section>
+
+        <section class="about">
+          <p>
+            How can human-centered design processes coupled with modern technologies support urban design? In this seminar, student teams develop evidence-based, data-driven strategies for New York City's Business Improvement Districts — proposing forward-thinking interventions across sustainability, mobility, equity, and resilience. Each project moves through four lenses:
+          </p>
+          <div class="lenses">
+            <div class="lens">
+              <p class="lens-number">01</p>
+              <p class="lens-title">Insight</p>
+              <p class="lens-desc">Understanding the current state through data collection, mapping, and urban analytics</p>
+            </div>
+            <div class="lens">
+              <p class="lens-number">02</p>
+              <p class="lens-title">Transformation</p>
+              <p class="lens-desc">Proposing iterative, collaborative methods for urban intervention and scenario testing</p>
+            </div>
+            <div class="lens">
+              <p class="lens-number">03</p>
+              <p class="lens-title">Prediction</p>
+              <p class="lens-desc">Forecasting impact through simulation, agent modeling, and generative methods</p>
+            </div>
+            <div class="lens">
+              <p class="lens-number">04</p>
+              <p class="lens-title">Consensus</p>
+              <p class="lens-desc">Designing public-facing processes for collaborative decision-making</p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="page-right">
+        <ProjectGrid projects={projects} />
+      </div>
+    </div>
   </main>
   <Footer />
 </BaseLayout>
