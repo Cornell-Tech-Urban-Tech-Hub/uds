@@ -44,7 +44,7 @@ npm install
 npm run dev
 ```
 
-The site will be available at `http://localhost:4321/uds/`.
+The site will be available at `http://localhost:4321/`.
 
 ## Tech Stack
 
