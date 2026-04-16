@@ -102,10 +102,9 @@ img {
 
 .page-right {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 40px 24px 40px 0;
-  min-height: calc(100vh - 180px);
+  padding: 120px 24px 40px 0;
 }
 
 /* === Hero === */
@@ -137,8 +136,8 @@ img {
 }
 
 .about p {
-  font-size: 14.5px;
-  line-height: 1.7;
+  font-size: 16.5px;
+  line-height: 1.75;
   color: var(--color-text-secondary);
 }
 
@@ -208,7 +207,7 @@ img {
 .radial-caption {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 14px;
+  font-size: 17px;
   color: var(--color-text-tertiary);
   white-space: nowrap;
   transition: color var(--transition-default);
@@ -216,6 +215,16 @@ img {
 
 .radial-caption:hover {
   color: var(--color-text);
+}
+
+.radial-heading {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-align: center;
+  margin-top: 48px;
 }
 
 .radial-item {
@@ -231,8 +240,8 @@ img {
   text-align: center;
 }
 
-.project-card:hover .card-image img {
-  transform: scale(1.05);
+.project-card:hover .card-image {
+  transform: scale(1.10);
 }
 
 .project-card:hover .card-title {
@@ -247,18 +256,22 @@ img {
   border-radius: 50%;
   overflow: hidden;
   background: var(--color-surface);
+  transition: transform 0.3s ease;
+}
+
+.card-image.pulse-hint {
+  transform: scale(1.10);
 }
 
 .card-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s ease;
 }
 
 .card-title {
   font-family: var(--font-serif);
-  font-size: 16px;
+  font-size: 19px;
   font-weight: 400;
   color: var(--color-text);
   margin-top: 10px;
@@ -308,7 +321,7 @@ img {
 /* === Responsive === */
 
 /* Smaller desktop — tighten the two-column layout */
-@media (max-width: 1200px) {
+@media (max-width: 1400px) {
   .radial-container {
     width: min(540px, 100%);
   }
@@ -324,7 +337,7 @@ img {
 }
 
 /* Tablet — single column, radial stays */
-@media (max-width: 960px) {
+@media (max-width: 1200px) {
   .page-layout {
     grid-template-columns: 1fr;
     min-height: auto;
@@ -338,7 +351,7 @@ img {
   .page-right {
     padding: 80px var(--spacing-page) 64px;
     min-height: auto;
-    align-items: start;
+    align-items: center;
   }
 
   .lenses {

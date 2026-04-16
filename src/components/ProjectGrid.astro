@@ -43,3 +43,19 @@ const positions = projects.map((_, i) => {
     </div>
   ))}
 </div>
+
+<script>
+  function pulseRandom() {
+    const items = document.querySelectorAll('.radial-item .card-image');
+    if (!items.length) return;
+    const idx = Math.floor(Math.random() * items.length);
+    const el = items[idx];
+    el.classList.add('pulse-hint');
+    setTimeout(() => el.classList.remove('pulse-hint'), 800);
+  }
+
+  setTimeout(() => {
+    pulseRandom();
+    setInterval(pulseRandom, 3000);
+  }, 1500);
+</script>
