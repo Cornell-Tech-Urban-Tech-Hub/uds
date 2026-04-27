@@ -1,5 +1,25 @@
+---
+import { Image } from "astro:assets";
+import cornellTechLogo from "../assets/logos/Cornell-tech-logo-Large.png";
+import jacobsLogo from "../assets/logos/jacobs_technion-cornell_institute.png";
+---
+
 <header class="site-header">
   <div class="header-inner">
+    <div class="partner-logos" aria-label="Partner logos">
+      <Image
+        src={cornellTechLogo}
+        alt="Cornell Tech"
+        class="partner-logo partner-logo-cornell"
+        loading="lazy"
+      />
+      <Image
+        src={jacobsLogo}
+        alt="Jacobs Technion-Cornell Institute"
+        class="partner-logo partner-logo-jacobs"
+        loading="lazy"
+      />
+    </div>
     <a href={import.meta.env.BASE_URL} class="header-title">Street Knowledge</a>
     <span class="header-meta">INFO 5420 · Cornell Tech</span>
   </div>

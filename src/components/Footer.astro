@@ -1,16 +1,28 @@
 ---
-import { Image } from 'astro:assets';
-import cornellTechLogo from '../assets/logos/Cornell-tech-logo-Large.png';
-import jacobsLogo from '../assets/logos/jacobs_technion-cornell_institute.png';
+import { Image } from "astro:assets";
+import cornellTechLogo from "../assets/logos/Cornell-tech-logo-Large.png";
+import jacobsLogo from "../assets/logos/jacobs_technion-cornell_institute.png";
 ---
 
 <footer class="site-footer">
   <div class="footer-inner">
-    <div class="footer-logos" aria-label="Partner logos">
-      <Image src={cornellTechLogo} alt="Cornell Tech" class="footer-logo footer-logo-cornell" loading="lazy" />
-      <Image src={jacobsLogo} alt="Jacobs Technion-Cornell Institute" class="footer-logo footer-logo-jacobs" loading="lazy" />
+    <div class="partner-logos" aria-label="Partner logos">
+      <Image
+        src={cornellTechLogo}
+        alt="Cornell Tech"
+        class="partner-logo partner-logo-cornell"
+        loading="lazy"
+      />
+      <Image
+        src={jacobsLogo}
+        alt="Jacobs Technion-Cornell Institute"
+        class="partner-logo partner-logo-jacobs"
+        loading="lazy"
+      />
     </div>
     <span class="footer-credit">Spring 2026</span>
-    <a href="https://info5420.tech.cornell.edu" class="footer-link">info5420.tech.cornell.edu</a>
+    <a href="https://info5420.tech.cornell.edu" class="footer-link"
+      >info5420.tech.cornell.edu</a
+    >
   </div>
 </footer>
