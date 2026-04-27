@@ -1,38 +1,17 @@
 ---
 import ProjectCard from './ProjectCard.astro';
 import type { CollectionEntry } from 'astro:content';
-import gowanusImage from '../assets/gowanus.jpg';
 
 interface Props {
   projects: CollectionEntry<'projects'>[];
 }
 
 const { projects } = Astro.props;
-
-const count = projects.length;
-const angleStep = (2 * Math.PI) / Math.max(count, 1);
-const radius = 44;
-
-const positions = projects.map((_, i) => {
-  const angle = angleStep * i - Math.PI / 2;
-  return {
-    x: 50 + radius * Math.cos(angle),
-    y: 50 + radius * Math.sin(angle),
-  };
-});
 ---
 
-<div class="radial-container">
-  <div class="radial-center">
-    <img src={gowanusImage.src} alt="Gowanus neighborhood" class="radial-image" />
-    <a href="https://gowanusimprovementdistrict.org/" class="radial-caption" target="_blank" rel="noopener noreferrer">Proposed Gowanus BID</a>
-  </div>
-
-  {projects.map((project, i) => (
-    <div
-      class="radial-item"
-      style={`left: ${positions[i].x}%; top: ${positions[i].y}%;`}
-    >
+<div class="projects-grid" role="list">
+  {projects.map((project) => (
+    <div class="projects-grid-item" role="listitem">
       <ProjectCard
         title={project.data.title}
         members={project.data.members}
@@ -43,19 +22,3 @@ const positions = projects.map((_, i) => {
     </div>
   ))}
 </div>
-
-<script>
-  function pulseRandom() {
-    const items = document.querySelectorAll('.radial-item .card-image');
-    if (!items.length) return;
-    const idx = Math.floor(Math.random() * items.length);
-    const el = items[idx];
-    el.classList.add('pulse-hint');
-    setTimeout(() => el.classList.remove('pulse-hint'), 800);
-  }
-
-  setTimeout(() => {
-    pulseRandom();
-    setInterval(pulseRandom, 3000);
-  }, 1500);
-</script>
