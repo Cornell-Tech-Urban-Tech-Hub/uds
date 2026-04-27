@@ -17,7 +17,7 @@ const projects = (await getCollection('projects'))
 <BaseLayout title="Projects — Street Knowledge">
   <Header />
   <main>
-    <div class="page-layout">
+    <div class="page-layout projects-layout">
       <div class="page-left">
         <section class="page-header">
           <h1>Projects</h1>
@@ -64,5 +64,22 @@ const projects = (await getCollection('projects'))
     font-size: 16px;
     line-height: 1.6;
     color: var(--color-text-secondary);
+  }
+
+  .projects-layout .page-left {
+    position: static;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .projects-layout .page-right {
+    align-items: flex-start;
+    padding: 24px var(--spacing-page) 64px;
+  }
+
+  @media (max-width: 1200px) {
+    .projects-layout .page-right {
+      padding: 0 var(--spacing-page) 64px;
+    }
   }
 </style>

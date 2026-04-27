@@ -7,12 +7,12 @@
 
 /* === Custom Properties === */
 :root {
-  --color-bg: #f5f3ef;
-  --color-surface: #eae7e1;
-  --color-text: #1c1917;
-  --color-text-secondary: #6b6560;
-  --color-text-tertiary: #9e9890;
-  --color-rule: #d6d1c9;
+  --color-bg: #050505;
+  --color-surface: #111111;
+  --color-text: #f8f8f8;
+  --color-text-secondary: #ffffff;
+  --color-text-tertiary: #ffffff;
+  --color-rule: #2a2a2a;
 
   --font-serif: 'Source Serif 4', Georgia, serif;
   --font-sans: 'Outfit', -apple-system, system-ui, sans-serif;
@@ -30,7 +30,7 @@ html {
 body {
   font-family: var(--font-sans);
   font-weight: 300;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -95,7 +95,7 @@ img {
 }
 
 .nav-link:hover {
-  color: var(--color-text);
+  color: #ffffff;
 }
 
 .nav-link::after {
@@ -123,17 +123,7 @@ img {
 
 .page-left {
   padding: 0 var(--spacing-page);
-  position: sticky;
-  top: 0;
   align-self: start;
-  max-height: 100vh;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-}
-
-.page-left::-webkit-scrollbar {
-  display: none;
 }
 
 .page-right {
@@ -215,62 +205,19 @@ img {
   line-height: 1.5;
 }
 
-/* === Radial Container === */
-.radial-container {
-  position: relative;
-  width: min(620px, 100%);
-  aspect-ratio: 1 / 1;
+/* === Projects Grid === */
+.projects-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 24px;
 }
 
-.radial-center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
+.projects-grid-item {
+  width: 100%;
 }
 
-.radial-image {
-  width: clamp(120px, 18vw, 180px);
-  height: auto;
-  border-radius: 8px;
-}
-
-.radial-caption {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 17px;
-  color: var(--color-text-tertiary);
-  white-space: nowrap;
-  transition: color var(--transition-default);
-}
-
-.radial-caption:hover {
-  color: var(--color-text);
-}
-
-.radial-heading {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 24px;
-  font-weight: 600;
-  color: var(--color-text-secondary);
-  text-align: center;
-  margin-top: 48px;
-}
-
-.radial-item {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  width: 150px;
-  z-index: 1;
-}
-
-/* === Project Card (Radial) === */
+/* === Project Card === */
 .project-card {
   display: block;
   text-align: center;
@@ -281,7 +228,7 @@ img {
 }
 
 .project-card:hover .card-title {
-  color: var(--color-text-secondary);
+  color: #ffffff;
 }
 
 .card-image {
@@ -289,14 +236,11 @@ img {
   width: 110px;
   height: 110px;
   margin: 0 auto;
-  border-radius: 50%;
+  border-radius: 8px;
+  border: 1px solid var(--color-rule);
   overflow: hidden;
   background: var(--color-surface);
   transition: transform 0.3s ease;
-}
-
-.card-image.pulse-hint {
-  transform: scale(1.10);
 }
 
 .card-image img {
@@ -336,7 +280,29 @@ img {
 .footer-inner {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
+  gap: 24px;
+}
+
+.footer-logos {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.footer-logo {
+  width: auto;
+  height: 24px;
+  object-fit: contain;
+  opacity: 0.9;
+}
+
+.footer-logo-cornell {
+  height: 22px;
+}
+
+.footer-logo-jacobs {
+  height: 24px;
 }
 
 .footer-credit {
@@ -351,19 +317,15 @@ img {
 }
 
 .footer-link:hover {
-  color: var(--color-text);
+  color: #ffffff;
 }
 
 /* === Responsive === */
 
 /* Smaller desktop — tighten the two-column layout */
 @media (max-width: 1400px) {
-  .radial-container {
-    width: min(540px, 100%);
-  }
-
-  .radial-item {
-    width: 140px;
+  .projects-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .card-image {
@@ -394,9 +356,8 @@ img {
     grid-template-columns: repeat(4, 1fr);
   }
 
-  .radial-container {
-    width: min(520px, 100%);
-    margin: 0 auto;
+  .projects-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -406,12 +367,8 @@ img {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .radial-container {
-    width: min(440px, 100%);
-  }
-
-  .radial-item {
-    width: 120px;
+  .projects-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .card-image {
@@ -426,66 +383,28 @@ img {
   .card-members {
     font-size: 11px;
   }
-
-  .radial-image {
-    width: 100px;
-  }
-
-  .radial-caption {
-    font-size: 12px;
-  }
 }
 
-/* Phone — radial collapses to vertical list */
+/* Phone — compact layout */
 @media (max-width: 540px) {
-  .radial-container {
-    width: 100%;
-    aspect-ratio: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 32px;
-    padding: 0;
-  }
-
-  .radial-center {
-    position: static;
-    transform: none;
-  }
-
-  .radial-image {
-    width: 140px;
-  }
-
-  .radial-item {
-    position: static;
-    transform: none;
-    width: 100%;
-    max-width: 280px;
-  }
-
-  .project-card {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    text-align: left;
-  }
-
   .card-image {
     width: 64px;
     height: 64px;
-    flex-shrink: 0;
-    margin: 0;
+    margin: 0 auto;
   }
 
   .card-title {
     font-size: 15px;
-    margin-top: 0;
+    margin-top: 8px;
   }
 
   .card-members {
     font-size: 12px;
-    margin-top: 2px;
+    margin-top: 4px;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
   }
 
   .page-right {
@@ -499,6 +418,11 @@ img {
   .footer-inner {
     flex-direction: column;
     gap: 8px;
+    align-items: flex-start;
+  }
+
+  .footer-logo {
+    height: 20px;
   }
 
   .header-meta {

@@ -12,52 +12,436 @@ const projects = (await getCollection('projects'))
       return a.data.order - b.data.order;
     return a.data.title.localeCompare(b.data.title);
   });
+
+const teamMembers = (await getCollection('team')).sort((a, b) => {
+  if (a.data.order !== undefined && b.data.order !== undefined)
+    return a.data.order - b.data.order;
+  return a.data.name.localeCompare(b.data.name);
+});
+
+const instructor = teamMembers.find((member) => /instructor/i.test(member.data.role));
+const teachingAssistants = teamMembers.filter((member) => /\bta\b|teaching assistant/i.test(member.data.role));
 ---
 
 <BaseLayout title="Street Knowledge — Cornell Tech">
   <Header />
-  <main>
-    <div class="page-layout">
-      <div class="page-left">
-        <section class="hero">
-          <h1>Street Knowledge</h1>
-          <p class="subtitle">Urban systems design in NYC's Gowanus district</p>
+  <main class="single-main">
+    <div class="single-shell">
+      <section class="single-section intro-section">
+        <h1 class="page-title">Street Knowledge</h1>
+      
+        <h2>Designing A Design Process</h2>
+
+
+       
+      </section>
+
+      <section class="single-section">
+        <section class="text-block">
+ 
+          <p>
+            The rapid urbanization of the 21st century introduces both vast opportunities and new challenges to cities worldwide. Waves of migration and immigration, climate change, technological disruptions, inequality and affordability, are only some of the questions urban decision-makers are facing today. As these challenges grow, traditional urban processes are rendered insufficient: Slow planning and decision-making processes lag behind rapidly expanding cities; static regulations struggle with volatile economies; technological disruptions outpace legacy urban systems.
+          </p>
+          <p>
+            In this course we will explore how human-centered design processes coupled with modern technologies can support urban design in the 21st century. Students will learn about, and later propose a systematic, scalable, evidence-based and data-driven urban design strategy, while emphasizing a public-facing, community-driven, and participatory planning process.
+          </p>
+          <p>
+            A semester-long group project will focus on New York City&rsquo;s Business Improvement Districts (BIDs). In their projects, students will be asked to touch upon urgent urban challenges such as sustainability, infrastructure, resiliency, mobility, affordability, access, and equity, to name a few. Each team will propose forward-thinking and technologically driven design approaches to a selected site.
+          </p>
         </section>
 
-        <section class="about">
-          <p>
-            How can human-centered design processes coupled with modern technologies support urban design? In this seminar, student teams develop evidence-based, data-driven strategies for New York City's Business Improvement Districts — proposing forward-thinking interventions across sustainability, mobility, equity, and resilience. Each project moves through four lenses:
-          </p>
-          <div class="lenses">
-            <div class="lens">
-              <p class="lens-number">01</p>
-              <p class="lens-title">Insight</p>
-              <p class="lens-desc">Understanding the current state through data collection, mapping, and urban analytics</p>
-            </div>
-            <div class="lens">
-              <p class="lens-number">02</p>
-              <p class="lens-title">Transformation</p>
-              <p class="lens-desc">Proposing iterative, collaborative methods for urban intervention and scenario testing</p>
-            </div>
-            <div class="lens">
-              <p class="lens-number">03</p>
-              <p class="lens-title">Prediction</p>
-              <p class="lens-desc">Forecasting impact through simulation, agent modeling, and generative methods</p>
-            </div>
-            <div class="lens">
-              <p class="lens-number">04</p>
-              <p class="lens-title">Consensus</p>
-              <p class="lens-desc">Designing public-facing processes for collaborative decision-making</p>
-            </div>
+        <details class="collapsible">
+          <summary>
+            <span>↓ Read more</span>
+            <span class="summary-hint">Click to open/close</span>
+          </summary>
+
+          <div class="collapsible-body">
+            <section class="text-block">
+              <h2>Insight</h2>
+              <p>Understanding the current state of the city, neighborhood, and site</p>
+              <ul>
+                <li>Performing data collection, generation, or augmentation, using real-time spatial data, public or private APIs, emphasizing new and unconventional datasets</li>
+                <li>Developing an urban analytics strategy, and communicating it via mapping, urban observatories, and data visualization methods</li>
+              </ul>
+            </section>
+
+            <section class="text-block">
+              <h2>Transformation</h2>
+              <p>Proposing methods and tools for an iterative and collaborative design process</p>
+              <ul>
+                <li>Explore alternative urban interventions and feasibility analysis of scenarios</li>
+                <li>Evaluate applicability, usability, accessibility, and impact on future design and decision-making process</li>
+              </ul>
+            </section>
+
+            <section class="text-block">
+              <h2>Prediction</h2>
+              <p>Assessing the implicit aspect of urban change</p>
+              <ul>
+                <li>Develop urban forecasting methods, such as impact on demographics, human behavior, urban mobility, and access</li>
+                <li>Utilize optimization methods, simulations, agents modeling, generative AI to explore, non-trivial, subtle and experiential impact of proposed interventions</li>
+              </ul>
+            </section>
+
+            <section class="text-block">
+              <h2>Consensus</h2>
+              <p>Designing build public-facing processes for collaborative decision-making</p>
+              <ul>
+                <li>Facilitate a range of stakeholders, communities, experts and non-experts in the design and decision making process</li>
+                <li>Evaluate societal, cultural, and political outcomes and tradeoffs, short-and-long term effects, via feedback loops and repeated engagement</li>
+              </ul>
+            </section>
+
+            <section class="text-block">
+              <h2>Course Structure</h2>
+              <p>
+                The course will be a mix of talks, hands-on workshop, presentations, site visits, and group discussions. We will aim to create a design-studio and hands-on experience, including charrettes, public reviews and pinups, as well as constructive feedback.
+              </p>
+              <ul>
+                <li>Groups of students will form to propose a semester-long project divided into segments (see &ldquo;Assignments&rdquo;)</li>
+                <li>Each session is designed to build expertise and expand the students' representation, technical and thematic toolbox, teamwork and design thinking skills</li>
+                <li>The course will be held in person. Some sessions might be held off-campus, please confirm with course schedule and instructors</li>
+              </ul>
+            </section>
+
+            <section class="text-block">
+              <h2>Intended Learning Outcomes</h2>
+              <p>
+                By the end of this workshop, students will learn and have hands-on experience with the multidimensional drivers that shape urban design today. The course will teach students how to analyze, transform, project, and communicate change in urban environments.
+              </p>
+              <ul>
+                <li>Craft an urban-design challenge statement for a NYC site</li>
+                <li>Recognize the spatial, temporal and other data sources necessary to address these challenges</li>
+                <li>Understand local, governmental, and other stakeholders involvement in the design process</li>
+                <li>Describe how models and simulations can be used to evaluate urban interventions</li>
+                <li>Outline the process to build collaborative urban decision-making processes</li>
+              </ul>
+            </section>
+          </div>
+        </details>
+      </section>
+
+      <section class="single-section">
+        <section class="fold-section">
+          <h2 class="fold-title">Projects</h2>
+          <p class="fold-copy">Student teams and project links.</p>
+          <ProjectGrid projects={projects} />
+        </section>
+      </section>
+
+      <section class="single-section">
+        <section class="fold-section">
+          <h2 class="fold-title">Team</h2>
+          <p class="fold-copy">Instructors and teaching team.</p>
+
+          <div class="team-hierarchy">
+            <section class="team-group">
+              {instructor ? (
+     
+                  <h4 class="team-name">{instructor.data.name}</h4>
+                  <p class="team-role">{instructor.data.role}</p>
+                  <p class="team-bio">{instructor.data.bio}</p>
+           
+              ) : (
+                <p class="team-empty">Instructor information will be added soon.</p>
+              )}
+            </section>
+
+            <section class="team-group">
+              {teachingAssistants.length ? (
+                <div class="ta-grid">
+                  {teachingAssistants.map((member) => (
+                 
+                      <h4 class="team-name">{member.data.name}</h4>
+                      <p class="team-role">{member.data.role}</p>
+                      <p class="team-bio">{member.data.bio}</p>
+          
+                  ))}
+                </div>
+              ) : (
+                <p class="team-empty">TA information will be added soon.</p>
+              )}
+            </section>
+
+             <div class="team-hierarchy">
+            <section class="team-group">
+              <h3 class="team-group-title">Guest Mentors</h3>
+
+ <ul class="guest-mentor-list" aria-label="Guest mentors">
+                <li><strong>Eyal Feder-Levy</strong> | Co-founder and CEO of Zencity</li>
+                <li><strong>Sagi Golan</strong> | Deputy Director of Urban Desian, NYC Department of City Planning</li>
+                <li><strong>Arnaud Grignard</strong> | Researcher at the French National Research Institute for Sustainable Development (IRD)</li>
+                <li><strong>Andrea Parker</strong> | Exec. Dir. Gowanus Canal Conservancy</li>
+                <li><strong>Emily C. Bell</strong> | Gowanus Canal Conservancy</li>
+                <li><strong>Star Childs</strong> | Founder, Ginkao</li>
+                <li><strong>Ryan Hardesty Lewis</strong> | PhD student. MT</li>
+                <li><strong>Kobi Ruthrnberg</strong> | Partner at ORG</li>
+              </ul>
+              </section>
+
+
+
           </div>
         </section>
-      </div>
-
-      <div class="page-right">
-        <ProjectGrid projects={projects} />
-        <p class="radial-heading">Spring 2026 Projects</p>
-      </div>
+      </section>
     </div>
   </main>
   <Footer />
 </BaseLayout>
+
+<style>
+  .single-main {
+    padding: 40px var(--spacing-page) 56px;
+  }
+
+  .single-shell {
+    width: min(1400px, 100%);
+    margin: 0 auto;
+  }
+
+  .single-section {
+    padding: 36px 0;
+  }
+
+  .intro-section {
+    padding-bottom: 18px;
+  }
+
+  .page-title {
+    font-family: var(--font-serif);
+    font-size: clamp(36px, 5vw, 62px);
+    font-weight: 400;
+    line-height: 1.06;
+    margin-bottom: 8px;
+  }
+
+  .page-subtitle {
+    color: var(--color-text-secondary);
+    font-size: 18px;
+    margin-bottom: 14px;
+  }
+
+  .intro-copy {
+    color: var(--color-text-secondary);
+    max-width: 960px;
+  }
+
+  .collapsible {
+    border: 1px solid var(--color-rule);
+    background: var(--color-surface);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .collapsible summary {
+    padding: 16px 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    font-family: var(--font-serif);
+    font-size: clamp(20px, 2.4vw, 28px);
+    list-style: none;
+    border-bottom: 1px solid transparent;
+  }
+
+  .summary-hint {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-text-tertiary);
+  }
+
+  .collapsible[open] summary {
+    border-bottom-color: var(--color-rule);
+  }
+
+  .collapsible-body {
+    padding: 20px;
+    display: grid;
+    gap: 26px;
+  }
+
+  .text-block h2 {
+    font-family: var(--font-serif);
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 10px;
+  }
+
+  .text-block p {
+    color: var(--color-text-secondary);
+    margin-bottom: 12px;
+  }
+
+  .text-block ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .text-block li {
+    color: var(--color-text-secondary);
+    margin-bottom: 10px;
+    padding-left: 18px;
+    position: relative;
+  }
+
+  .text-block li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--color-text);
+  }
+
+  .fold-section {
+    padding-top: 8px;
+    border-top: 1px solid var(--color-rule);
+  }
+
+  .fold-title {
+    font-family: var(--font-serif);
+    font-size: clamp(30px, 4vw, 48px);
+    font-weight: 400;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .fold-copy {
+    color: var(--color-text-tertiary);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 16px;
+  }
+
+  .team-hierarchy {
+    display: grid;
+    gap: 28px;
+  }
+
+  .team-group {
+    display: grid;
+    gap: 14px;
+  }
+
+  .team-group-title {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-tertiary);
+  }
+
+  .ta-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .team-card {
+    padding: 20px;
+    border: 1px solid var(--color-rule);
+    background: var(--color-surface);
+  }
+
+  .instructor-card {
+    padding: 28px;
+    max-width: 980px;
+  }
+
+  .instructor-card .team-name {
+    font-size: 30px;
+  }
+
+  .instructor-card .team-role {
+    font-size: 13px;
+    margin-bottom: 14px;
+  }
+
+  .instructor-card .team-bio {
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  .ta-card {
+    padding: 16px;
+  }
+
+  .ta-card .team-name {
+    font-size: 20px;
+  }
+
+  .ta-card .team-bio {
+    font-size: 14px;
+  }
+
+  .team-name {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 4px;
+  }
+
+  .team-role {
+    color: var(--color-text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+
+  .team-bio {
+    color: var(--color-text-secondary);
+    font-size: 14px;
+  }
+
+  .guest-mentor-list {
+    list-style: none;
+    padding-left: 0;
+    color: var(--color-text-secondary);
+    font-size: 11px;
+    line-height: 1.6;
+  }
+
+  .guest-mentor-list li {
+    margin-bottom: 12px;
+  }
+
+  .guest-mentor-list strong {
+    color: var(--color-text);
+  }
+
+  .team-empty {
+    color: var(--color-text-tertiary);
+  }
+
+  @media (max-width: 1200px) {
+    .ta-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .single-main {
+      padding-top: 28px;
+    }
+
+    .instructor-card {
+      padding: 20px;
+    }
+
+    .instructor-card .team-name {
+      font-size: 24px;
+    }
+
+    .collapsible summary {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
+</style>
