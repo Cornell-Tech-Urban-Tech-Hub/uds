@@ -15,4 +15,14 @@ const projects = defineCollection({
     }),
 });
 
-export const collections = { projects };
+const team = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/team' }),
+  schema: z.object({
+    name: z.string(),
+    role: z.string(),
+    bio: z.string(),
+    order: z.number().optional(),
+  }),
+});
+
+export const collections = { projects, team };
