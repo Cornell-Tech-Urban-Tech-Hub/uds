@@ -17,6 +17,7 @@ const { projects } = Astro.props;
         image={project.data.image}
         url={project.data.url}
         description={project.data.description}
+        members={'members' in project.data ? project.data.members : []}
       />
     </div>
   ))}

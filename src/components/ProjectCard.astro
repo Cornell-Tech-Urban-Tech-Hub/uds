@@ -10,7 +10,7 @@ interface Props {
   description?: string;
 }
 
-const { title, image, url, description } = Astro.props;
+const { title, image, url, description, members = [] } = Astro.props;
 ---
 
 <a href={url} class="project-card" target="_blank" rel="noopener noreferrer">
