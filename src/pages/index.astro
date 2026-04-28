@@ -13,6 +13,14 @@ const projects = (await getCollection("projects"))
     return a.data.title.localeCompare(b.data.title);
   });
 
+const bidspecProjects = (await getCollection("bidspec"))
+  .filter((p) => !p.id.startsWith("_"))
+  .sort((a, b) => {
+    if (a.data.order !== undefined && b.data.order !== undefined)
+      return a.data.order - b.data.order;
+    return a.data.title.localeCompare(b.data.title);
+  });
+
 const teamMembers = (await getCollection("team")).sort((a, b) => {
   if (a.data.order !== undefined && b.data.order !== undefined)
     return a.data.order - b.data.order;
@@ -212,9 +220,19 @@ const teachingAssistants = teamMembers.filter((member) =>
 
       <section class="single-section">
         <section class="fold-section">
-          <h2 class="fold-title">Projects</h2>
-          <p class="fold-copy">Student teams and project links.</p>
+          <h2 class="fold-title">Projects · Spring 2026</h2>
+          <p class="fold-copy">Current semester student teams and project links.</p>
           <ProjectGrid projects={projects} />
+        </section>
+      </section>
+
+      <section class="single-section">
+        <section class="fold-section fold-section--past">
+          <h3 class="fold-title">Past Projects</h3>
+          <p class="fold-copy">
+            Spring 2025 — BIDspec, from a previous course iteration.
+          </p>
+          <ProjectGrid projects={bidspecProjects} />
         </section>
       </section>
 

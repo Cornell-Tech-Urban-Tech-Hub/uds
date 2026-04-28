@@ -198,7 +198,7 @@ img {
 }
 
 .fold-section {
-  padding-top: 8px;
+  padding-top: 32px;
   border-top: 1px solid var(--color-rule);
 }
 
@@ -207,7 +207,7 @@ img {
   font-size: clamp(30px, 4vw, 48px);
   font-weight: 400;
   line-height: 1;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 
 .fold-copy {
@@ -215,7 +215,49 @@ img {
   font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
+}
+
+/* Subdued archive variant — visually subordinate to the current section */
+.fold-section--past {
+  margin-top: 32px;
+  padding-top: 28px;
+  opacity: 0.78;
+}
+
+.fold-section--past .fold-title {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-secondary, var(--color-text-tertiary));
+  margin-bottom: 8px;
+}
+
+.fold-section--past .fold-copy {
+  font-size: 12px;
+  margin-bottom: 24px;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.fold-section--past .card-image {
+  width: 72px;
+  height: 72px;
+}
+
+.fold-section--past .card-title {
+  font-size: 14px;
+  color: var(--color-text-secondary, var(--color-text-tertiary));
+}
+
+.fold-section--past .projects-grid {
+  gap: 18px;
+}
+
+.fold-section--past:hover {
+  opacity: 1;
 }
 
 /* === Projects Grid === */

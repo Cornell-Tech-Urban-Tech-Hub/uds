@@ -3,7 +3,7 @@ import ProjectCard from './ProjectCard.astro';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
-  projects: CollectionEntry<'projects'>[];
+  projects: (CollectionEntry<'projects'> | CollectionEntry<'bidspec'>)[];
 }
 
 const { projects } = Astro.props;
@@ -14,7 +14,6 @@ const { projects } = Astro.props;
     <div class="projects-grid-item" role="listitem">
       <ProjectCard
         title={project.data.title}
-        members={project.data.members}
         image={project.data.image}
         url={project.data.url}
         description={project.data.description}

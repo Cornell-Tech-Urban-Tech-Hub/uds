@@ -25,4 +25,18 @@ const team = defineCollection({
   }),
 });
 
-export const collections = { projects, team };
+const bidspec = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/bidspec' }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      bidName: z.string().optional(),
+      borough: z.string().optional(),
+      image: image(),
+      url: z.string().url(),
+      description: z.string().optional(),
+      order: z.number().optional(),
+    }),
+});
+
+export const collections = { projects, team, bidspec };

@@ -4,13 +4,13 @@ import type { ImageMetadata } from 'astro';
 
 interface Props {
   title: string;
-  members: string[];
+  members?: string[];
   image: ImageMetadata;
   url: string;
   description?: string;
 }
 
-const { title, members, image, url, description } = Astro.props;
+const { title, image, url, description } = Astro.props;
 ---
 
 <a href={url} class="project-card" target="_blank" rel="noopener noreferrer">
