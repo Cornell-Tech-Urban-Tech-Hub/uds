@@ -247,7 +247,7 @@ img {
   font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  margin-bottom: 16px;
+  margin-bottom: 32px;
 }
 
 /* === Projects Grid === */
@@ -321,12 +321,26 @@ img {
 /* === Team === */
 .team-hierarchy {
   display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 28px;
+}
+
+.team-hierarchy > .team-group:nth-child(1),
+.team-hierarchy > .team-group:nth-child(2) {
+  grid-column: 1;
+}
+
+.team-hierarchy > .team-group:nth-child(3) {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: start;
 }
 
 .team-group {
   display: grid;
+  align-content: start;
   gap: 14px;
+  width: 100%;
 }
 
 .team-group-title {
@@ -340,19 +354,25 @@ img {
 
 .ta-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr;
   gap: 16px;
+  width: 100%;
 }
 
 .team-card {
   padding: 20px;
   border: 1px solid var(--color-rule);
   background: var(--color-surface);
+  width: 100%;
+}
+
+.guest-mentor-card {
+  align-self: start;
 }
 
 .instructor-card {
   padding: 28px;
-  max-width: 980px;
+  max-width: none;
 }
 
 .instructor-card .team-role {
@@ -368,7 +388,7 @@ img {
   font-family: var(--font-serif);
   font-size: 22px;
   font-weight: 400;
-  margin-bottom: 4px;
+  margin-bottom: 14px;
 }
 
 .team-role {
@@ -387,13 +407,18 @@ img {
 .guest-mentor-list {
   list-style: none;
   padding-left: 0;
+  width: 100%;
   color: var(--color-text-secondary);
-  font-size: 16px;
-  line-height: 1.6;
+  font-size: 14px;
+  line-height: 1.7;
 }
 
 .guest-mentor-list li {
-  margin-bottom: 12px;
+  margin-bottom: 14px;
+}
+
+.guest-mentor-card .team-name {
+  margin-bottom: 20px;
 }
 
 .guest-mentor-list strong {
@@ -450,6 +475,17 @@ img {
 @media (max-width: 1200px) {
   .projects-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .team-hierarchy {
+    grid-template-columns: 1fr;
+  }
+
+  .team-hierarchy > .team-group:nth-child(1),
+  .team-hierarchy > .team-group:nth-child(2),
+  .team-hierarchy > .team-group:nth-child(3) {
+    grid-column: auto;
+    grid-row: auto;
   }
 
   .ta-grid {

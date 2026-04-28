@@ -281,16 +281,18 @@ const guestMentorList = guestMentors.flatMap((member) => {
             </section>
 
             <section class="team-group">
-              <h3 class="team-group-title">Guest Mentors</h3>
               {
                 guestMentorList.length ? (
-                  <ul class="guest-mentor-list" aria-label="Guest mentors">
-                    {guestMentorList.map((mentor) => (
-                      <li>
-                        <strong>{mentor.name}</strong> | {mentor.bio}
-                      </li>
-                    ))}
-                  </ul>
+                  <div class="team-card guest-mentor-card">
+                    <h4 class="team-name">Guest Mentors</h4>
+                    <ul class="guest-mentor-list" aria-label="Guest mentors">
+                      {guestMentorList.map((mentor) => (
+                        <li>
+                          <strong>{mentor.name}</strong> | {mentor.bio}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 ) : (
                   <p class="team-empty">
                     Guest mentor information will be added soon.
