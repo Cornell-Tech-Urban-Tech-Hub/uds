@@ -33,10 +33,32 @@ const instructor = teamMembers.find((member) =>
 const teachingAssistants = teamMembers.filter((member) =>
   /\bta\b|teaching assistant/i.test(member.data.role),
 );
+const guestMentors = teamMembers.filter((member) =>
+  /guest mentor/i.test(member.data.role),
+);
+const guestMentorList = guestMentors.flatMap((member) => {
+  if (member.data.mentors?.length) return member.data.mentors;
+  if (member.data.bio)
+    return [{ name: member.data.name, bio: member.data.bio }];
+  return [];
+});
 ---
 
 <BaseLayout title="Street Knowledge — Cornell Tech">
   <Header />
+
+  <div class="hero-video-wrap">
+    <video
+      class="hero-video"
+      src={`${import.meta.env.BASE_URL}bg.mp4`}
+      autoplay
+      muted
+      loop
+      playsinline
+      aria-hidden="true"></video>
+    <div class="hero-video-fade"></div>
+  </div>
+
   <main class="single-main">
     <div class="single-shell">
       <section class="single-section intro-section">
@@ -243,7 +265,6 @@ const teachingAssistants = teamMembers.filter((member) =>
 
           <div class="team-hierarchy">
             <section class="team-group">
-              <h3 class="team-group-title">Main Instructor</h3>
               {
                 instructor ? (
                   <article class="team-card instructor-card">
@@ -260,7 +281,6 @@ const teachingAssistants = teamMembers.filter((member) =>
             </section>
 
             <section class="team-group">
-              <h3 class="team-group-title">Teaching Assistants</h3>
               {
                 teachingAssistants.length ? (
                   <div class="ta-grid">
@@ -279,29 +299,24 @@ const teachingAssistants = teamMembers.filter((member) =>
             </section>
 
             <section class="team-group">
-              <h3 class="team-group-title">Guest Mentors</h3>
-              <ul class="guest-mentor-list" aria-label="Guest mentors">
-                <li>
-                  <strong>Eyal Feder-Levy</strong> | Co-founder and CEO of Zencity
-                </li>
-                <li>
-                  <strong>Sagi Golan</strong> | Deputy Director of Urban Desian, NYC
-                  Department of City Planning
-                </li>
-                <li>
-                  <strong>Arnaud Grignard</strong> | Researcher at the French National
-                  Research Institute for Sustainable Development (IRD)
-                </li>
-                <li>
-                  <strong>Andrea Parker</strong> | Exec. Dir. Gowanus Canal Conservancy
-                </li>
-                <li>
-                  <strong>Emily C. Bell</strong> | Gowanus Canal Conservancy
-                </li>
-                <li><strong>Star Childs</strong> | Founder, Ginkao</li>
-                <li><strong>Ryan Hardesty Lewis</strong> | PhD student. MT</li>
-                <li><strong>Kobi Ruthrnberg</strong> | Partner at ORG</li>
-              </ul>
+              {
+                guestMentorList.length ? (
+                  <div class="team-card guest-mentor-card">
+                    <h4 class="team-name">Guest Mentors</h4>
+                    <ul class="guest-mentor-list" aria-label="Guest mentors">
+                      {guestMentorList.map((mentor) => (
+                        <li>
+                          <strong>{mentor.name}</strong> | {mentor.bio}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : (
+                  <p class="team-empty">
+                    Guest mentor information will be added soon.
+                  </p>
+                )
+              }
             </section>
           </div>
         </section>
