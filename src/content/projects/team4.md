@@ -1,5 +1,5 @@
 ---
-title: "Polluted Flood Team"
+title: "Polluted Flood Mitigation"
 members: ["Xuexin He", "Wenzhuo Zhang", "Fengze Cai", "Hanqi Guo"]
 image: "../../assets/projects/team4.png"
 url: "https://cornell-tech-urban-tech-hub.github.io/uds26_team4"

@@ -96,6 +96,38 @@ img {
   height: 30px;
 }
 
+/* === Hero Video === */
+.hero-video-wrap {
+  position: relative;
+  width: 100%;
+  /* clamp height: 40vh on small screens, up to 70vh on large */
+  height: clamp(260px, 55vh, 680px);
+  overflow: hidden;
+  background: var(--color-bg);
+}
+
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* gradient overlay: transparent top → solid black bottom */
+.hero-video-fade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 35%,
+    rgba(5, 5, 5, 0.6) 65%,
+    var(--color-bg) 100%
+  );
+}
+
 /* === Single Page Sections === */
 .single-main {
   padding: 40px var(--spacing-page) 56px;
@@ -249,7 +281,7 @@ img {
   width: 110px;
   height: 110px;
   margin: 0 auto;
-  border-radius: 8px;
+  border-radius: 0;
   border: 1px solid var(--color-rule);
   overflow: hidden;
   background: var(--color-surface);
@@ -260,6 +292,7 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 0;
 }
 
 .card-title {
@@ -277,11 +310,12 @@ img {
 }
 
 .card-members {
-  font-size: 13px;
-  font-weight: 300;
+  font-size: 8px;
+  font-weight: 400;
   color: var(--color-text-tertiary);
-  margin-top: 4px;
-  line-height: 1.4;
+  margin-top: 3px;
+  line-height: 1.25;
+  letter-spacing: 0.04em;
 }
 
 /* === Team === */
@@ -321,30 +355,13 @@ img {
   max-width: 980px;
 }
 
-.instructor-card .team-name {
-  font-size: 30px;
-}
-
 .instructor-card .team-role {
   font-size: 13px;
   margin-bottom: 14px;
 }
 
-.instructor-card .team-bio {
-  font-size: 16px;
-  line-height: 1.7;
-}
-
 .ta-card {
   padding: 16px;
-}
-
-.ta-card .team-name {
-  font-size: 20px;
-}
-
-.ta-card .team-bio {
-  font-size: 14px;
 }
 
 .team-name {
@@ -467,10 +484,6 @@ img {
     padding: 20px;
   }
 
-  .instructor-card .team-name {
-    font-size: 24px;
-  }
-
   .collapsible summary {
     align-items: flex-start;
     flex-direction: column;
@@ -508,5 +521,20 @@ img {
 
   .header-meta {
     font-size: 11px;
+  }
+
+  .header-inner {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .partner-logos {
+    width: 100%;
+    order: -1;
+    gap: 14px;
+  }
+
+  .header-title {
+    font-size: 18px;
   }
 }

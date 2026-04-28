@@ -20,7 +20,15 @@ const team = defineCollection({
   schema: z.object({
     name: z.string(),
     role: z.string(),
-    bio: z.string(),
+    bio: z.string().optional(),
+    mentors: z
+      .array(
+        z.object({
+          name: z.string(),
+          bio: z.string(),
+        }),
+      )
+      .optional(),
     order: z.number().optional(),
   }),
 });
