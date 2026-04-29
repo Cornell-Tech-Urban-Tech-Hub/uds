@@ -21,6 +21,28 @@ const bidspecProjects = (await getCollection("bidspec"))
     return a.data.title.localeCompare(b.data.title);
   });
 
+const allProjects = [
+  ...projects.map((project) => ({
+    title: project.data.title,
+    image: project.data.image,
+    url: project.data.url,
+    description: project.data.description,
+    members: project.data.members,
+    year: project.data.year,
+    topics: project.data.topics,
+    order: project.data.order ?? 0,
+  })),
+  ...bidspecProjects.map((project) => ({
+    title: project.data.title,
+    image: project.data.image,
+    url: project.data.url,
+    description: project.data.description,
+    year: project.data.year,
+    topics: project.data.topics,
+    order: project.data.order ?? 0,
+  })),
+].sort((a, b) => Number(b.year) - Number(a.year) || a.order - b.order);
+
 const teamMembers = (await getCollection("team")).sort((a, b) => {
   if (a.data.order !== undefined && b.data.order !== undefined)
     return a.data.order - b.data.order;
@@ -242,19 +264,9 @@ const guestMentorList = guestMentors.flatMap((member) => {
 
       <section class="single-section">
         <section class="fold-section">
-          <h2 class="fold-title">Projects · Spring 2026</h2>
-          <p class="fold-copy">Current semester student teams and project links.</p>
-          <ProjectGrid projects={projects} />
-        </section>
-      </section>
-
-      <section class="single-section">
-        <section class="fold-section fold-section--past">
-          <h3 class="fold-title">Past Projects</h3>
-          <p class="fold-copy">
-            Spring 2025 — BIDspec, from a previous course iteration.
-          </p>
-          <ProjectGrid projects={bidspecProjects} />
+          <h2 class="fold-title">Projects</h2>
+          <p class="fold-copy">Student work from current and past course iterations.</p>
+          <ProjectGrid projects={allProjects} />
         </section>
       </section>
 

@@ -4,5 +4,7 @@ members: ["Matthias Corkran", "Michelle Hui", "Nina Mantegna", "Atmika Pai", "Ga
 image: "../../assets/projects/team1.png"
 url: "https://cornell-tech-urban-tech-hub.github.io/uds26_team1"
 description: ""
+year: 2026
+topics: ["Arts & Culture", "Public Space"]
 order: 1
 ---

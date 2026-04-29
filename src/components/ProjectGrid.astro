@@ -1,24 +1,118 @@
 ---
 import ProjectCard from './ProjectCard.astro';
-import type { CollectionEntry } from 'astro:content';
+import type { ImageMetadata } from 'astro';
+
+export interface ProjectGridItem {
+  title: string;
+  image: ImageMetadata;
+  url: string;
+  description?: string;
+  members?: string[];
+  year: string | number;
+  topics: string[];
+}
 
 interface Props {
-  projects: (CollectionEntry<'projects'> | CollectionEntry<'bidspec'>)[];
+  projects: ProjectGridItem[];
 }
 
 const { projects } = Astro.props;
+
+const years = Array.from(new Set(projects.map((project) => String(project.year))))
+  .sort((a, b) => Number(b) - Number(a));
+const topics = Array.from(
+  new Set(projects.flatMap((project) => project.topics ?? [])),
+).sort((a, b) => a.localeCompare(b));
 ---
 
-<div class="projects-grid" role="list">
-  {projects.map((project) => (
-    <div class="projects-grid-item" role="listitem">
-      <ProjectCard
-        title={project.data.title}
-        image={project.data.image}
-        url={project.data.url}
-        description={project.data.description}
-        members={'members' in project.data ? project.data.members : []}
-      />
+<div class="projects-browser" data-project-browser>
+  <div class="projects-controls" aria-label="Project filters">
+    <label class="filter-select">
+      <span>Year</span>
+      <select data-year-filter>
+        <option value="all">All years</option>
+        {years.map((year) => <option value={year}>{year}</option>)}
+      </select>
+    </label>
+
+    <div class="topic-filter" aria-label="Filter by topic">
+      <button class="topic-chip is-active" type="button" data-topic-filter="all" aria-pressed="true">
+        All topics
+      </button>
+      {topics.map((topic) => (
+        <button class="topic-chip" type="button" data-topic-filter={topic} aria-pressed="false">
+          {topic}
+        </button>
+      ))}
     </div>
-  ))}
+  </div>
+
+  <div class="projects-grid" role="list">
+    {projects.map((project) => (
+      <div
+        class="projects-grid-item"
+        role="listitem"
+        data-project-item
+        data-year={project.year}
+        data-topics={project.topics.join('|')}
+      >
+        <ProjectCard
+          title={project.title}
+          image={project.image}
+          url={project.url}
+          description={project.description}
+          members={project.members}
+          year={project.year}
+          topics={project.topics}
+        />
+      </div>
+    ))}
+  </div>
+
+  <p class="projects-empty" data-projects-empty hidden>No projects match these filters.</p>
 </div>
+
+<script>
+  document.querySelectorAll("[data-project-browser]").forEach((browser) => {
+    const yearFilter = browser.querySelector("[data-year-filter]");
+    const topicButtons = Array.from(
+      browser.querySelectorAll("[data-topic-filter]"),
+    );
+    const items = Array.from(browser.querySelectorAll("[data-project-item]"));
+    const emptyState = browser.querySelector("[data-projects-empty]");
+    let selectedTopic = "all";
+
+    const applyFilters = () => {
+      const selectedYear = yearFilter?.value ?? "all";
+      let visibleCount = 0;
+
+      items.forEach((item) => {
+        const matchesYear = selectedYear === "all" || item.dataset.year === selectedYear;
+        const itemTopics = (item.dataset.topics ?? "").split("|");
+        const matchesTopic = selectedTopic === "all" || itemTopics.includes(selectedTopic);
+        const isVisible = matchesYear && matchesTopic;
+
+        item.hidden = !isVisible;
+        if (isVisible) visibleCount += 1;
+      });
+
+      if (emptyState) emptyState.hidden = visibleCount > 0;
+    };
+
+    yearFilter?.addEventListener("change", applyFilters);
+
+    topicButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        selectedTopic = button.dataset.topicFilter ?? "all";
+
+        topicButtons.forEach((topicButton) => {
+          const isActive = topicButton === button;
+          topicButton.classList.toggle("is-active", isActive);
+          topicButton.setAttribute("aria-pressed", String(isActive));
+        });
+
+        applyFilters();
+      });
+    });
+  });
+</script>

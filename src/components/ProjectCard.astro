@@ -8,14 +8,28 @@ interface Props {
   image: ImageMetadata;
   url: string;
   description?: string;
+  year?: string | number;
+  topics?: string[];
 }
 
-const { title, image, url, description, members = [] } = Astro.props;
+const {
+  title,
+  image,
+  url,
+  description,
+  members = [],
+  year,
+  topics = [],
+} = Astro.props;
 ---
 
 <a href={url} class="project-card" target="_blank" rel="noopener noreferrer">
   <div class="card-image">
-    <Image src={image} alt={title} width={336} height={336} loading="lazy" />
+    <Image src={image} alt={title} width={720} height={520} loading="lazy" />
+  </div>
+  <div class="card-meta">
+    {year && <span>{year}</span>}
+    {topics[0] && <span>{topics[0]}</span>}
   </div>
   <h2 class="card-title">{title}</h2>
   {members.length > 0 && <p class="card-members">{members.join(" • ")}</p>}

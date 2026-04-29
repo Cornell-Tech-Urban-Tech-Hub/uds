@@ -11,6 +11,8 @@ const projects = defineCollection({
       image: image(),
       url: z.string().url(),
       description: z.string().optional(),
+      year: z.number(),
+      topics: z.array(z.string()).min(1),
       order: z.number().optional(),
     }),
 });
@@ -43,6 +45,8 @@ const bidspec = defineCollection({
       image: image(),
       url: z.string().url(),
       description: z.string().optional(),
+      year: z.number(),
+      topics: z.array(z.string()).min(1),
       order: z.number().optional(),
     }),
 });
