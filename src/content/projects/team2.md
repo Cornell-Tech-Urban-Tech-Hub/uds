@@ -6,5 +6,5 @@ url: "https://cornell-tech-urban-tech-hub.github.io/uds26_team2"
 description: ""
 year: 2026
 topics: ["Mobility", "Public Space"]
-order: 2
+order: 1
 ---
